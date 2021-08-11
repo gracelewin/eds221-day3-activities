@@ -1,0 +1,93 @@
+---
+title: "EDS 221 Day 3 Activites"
+author: "Grace Lewin"
+date: "8/11/2021"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(tidyverse)
+```
+
+# Conditional Statements
+
+## Task 1
+```{r}
+pm2_5 <- 300
+
+if (pm2_5 < 100) {
+  print("Low to moderate risk")
+} else if (pm2_5 >= 100 & pm2_5 < 150) {
+  print("Unhealthy for sensitive groups")
+} else {
+  print("Health risk present")
+}
+```
+
+
+## Task 2
+```{r}
+species <- "blue whale"
+
+if (str_detect(species, pattern = "whale")) {
+  print("You found a whale!")
+} 
+```
+
+
+## Task 3
+```{r}
+max_airtemp_c <- 24.1
+
+if (max_airtemp_c > 27) {
+  print("Temperature too high")
+} else if (max_airtemp_c <= 27) {
+  print("Temperature OK")
+}
+```
+
+## Task 4
+
+```{r}
+base_burrito <- 6.50
+
+main_ingredient <- "veggie"
+
+if (main_ingredient == "veggie") {
+  print("A veggie burrito is the cost of a base burrito") 
+} else if (main_ingredient == "chicken") {
+  print("A chicken burrito costs 3.00 more than a base burrito")
+} else if (main_ingredient == "steak") {
+  print("A steak burrito costs 3.25 more than a base burrito")
+}
+```
+
+
+# For Loops
+
+## Task 5
+```{r}
+fish = c(8, 10, 12, 13)
+species = c("goldfish", "tetras", "guppies", "mollies")
+
+prop_fish = vector(mode = "numeric", length = length(fish))
+
+for (i in seq_along(fish)) {
+  prop_fish[i] = fish[i]/sum(fish)
+  print(paste("Proportion of", species[i], "is", prop_fish[i]))
+}
+```
+
+## Task 6
+
+```{r}
+for (i in seq_along(month.name)) {
+  print(paste(month.name[i], "is month", i))
+}
+```
+
+
+
+
+

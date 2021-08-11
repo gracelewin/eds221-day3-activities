@@ -1,0 +1,44 @@
+---
+title: 'EDS 221 Day 3 Activities Part 2: Real Data'
+author: "Grace Lewin"
+date: "8/11/2021"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(tidyverse)
+library(here)
+library(janitor)
+```
+
+```{r}
+toolik_biochem <- read_csv(here("data", "Toolik_biochem_data.csv"), na = ".") %>% 
+  clean_names()
+```
+
+```{r}
+inlet_biochem <- toolik_biochem %>% 
+  filter(site == "Toolik Inlet" | site == "Toolik inlet") %>% 
+  select(p_h, doc_u_m, tdn_u_m)
+```
+
+```{r}
+means = vector(mode = "numeric", length = length(inlet_biochem))
+
+for (i in seq_along(inlet_biochem)) {
+  means[i] = mean(inlet_biochem[[i]], na.rm = TRUE)
+}
+means
+```
+
+```{r}
+apply(inlet_biochem, 2, mean, na.rm = TRUE)
+```
+
+```{r}
+purrr::map_df(.x = inlet_biochem, .f = mean, na.rm = TRUE)
+```
+
+
+
